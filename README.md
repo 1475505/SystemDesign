@@ -1,3 +1,5 @@
+> 已经通过GitBook 部署到 [http://sysdesign.070077.xyz/](https://sysdesign.070077.xyz/)   欢迎享用，感谢原作者的分享。如有侵权请联系我(github: 1475505) ，谢谢。
+
 # 系统设计面试：内幕指南（中文翻译）
 
 原名：《System Design Interview: An Insider’s Guide》
