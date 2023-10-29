@@ -1,4 +1,4 @@
-> 已经通过GitBook 部署到 [http://sysdesign.070077.xyz/](https://sysdesign.070077.xyz/)   欢迎享用，感谢原作者的分享。如有侵权请联系我(github: 1475505) ，谢谢。
+> 已经通过GitBook 部署到 [http://sysdesign.070077.xyz/](https://sysdesign.070077.xyz/)   。欢迎享用，感谢原作者的分享。如有侵权请联系我 [@1475505](https://github.com/1475505)，谢谢。
 
 # 系统设计面试：内幕指南（中文翻译）
 
@@ -6,9 +6,11 @@
 
 作者：Alex Xu
 
-译者：精灵王 [@Admol](https://github.com/Admol)
+译者：
 
+精灵王 [@Admol](https://github.com/Admol) （ch1， ch3-15）
 
+自动机 [@1475505](https://github.com/1475505)（ch2，ch16）
 
 ## 目录
 - [第 1 章：从零到数百万用户的规模](CHAPTER%201：SCALE%20FROM%20ZERO%20TO%20MILLIONS%20OF%20USERS.md)
