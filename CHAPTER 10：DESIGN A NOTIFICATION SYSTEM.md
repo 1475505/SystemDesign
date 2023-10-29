@@ -305,4 +305,19 @@ Android 采用了类似的通知流程。 Firebase Cloud Messaging (FCM) 通常�
   - [4] Mailchimp: [https://mailchimp.com/](https://mailchimp.com/)
   - [5] You Cannot Have Exactly-Once Delivery: [https://bravenewgeek.com/you-cannot-have-exactly-once-delivery](https://bravenewgeek.com/you-cannot-have-exactly-once-delivery/)
   - [6] Security in Push Notifications: [https://cloud.ibm.com/docs/services/mobilepush](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-security-in-push-notifications)
-  - [7] RadditMQ: [https://bit.ly/2sotIa6](https://bit.ly/2sotIa6)
+  - [7] RabbitMQ: [https://bit.ly/2sotIa6](https://bit.ly/2sotIa6)
+
+---
+
+既然你说“exactly once”是不可能的，但为什么一些消息队列中间件支持设置这种一致性语义？
+
+
+
+ChatGPT: 消息队列中间件宣称支持"exactly-once"交付通常是通过某种技术手段模拟实现的，而非真正的"exactly-once"交付。例如，它们可能依赖于消息的幂等性或消息去重技术来避免消息的重复处理。这种模拟"exactly-once"交付的方法在实践中可能会工作得很好，但技术上仍然不是真正的"exactly-once"交付，因为在分布式系统中，网络延迟和故障可能导致消息的重复交付或丢失。
+
+一些消息队列中间件声称支持"exactly-once"语义，但实际上它们通过技术手段模拟实现该语义。例如：
+
+1. **Apache Kafka**：通过事务和幂等性API来支持exactly-once语义。
+2. **Apache Pulsar**：通过消息去重和事务处理来模拟exactly-once语义。
+
+它们通过确保消息处理的幂等性或其他技术来避免消息的重复处理，从而在实践中模拟exactly-once语义。你可以查看这些中间件的官方文档，了解它们是如何实现和保证这种语义的。

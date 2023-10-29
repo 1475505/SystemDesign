@@ -1,4 +1,5 @@
 <!-- TOC -->
+
   * [第1步 ：了解问题并确定设计范围](#第1步了解问题并确定设计范围)
     * [粗略估计系统量级](#粗略估计系统量级)
   * [第2步：提出高层次的设计方案并获得认同](#第2步提出高层次的设计方案并获得认同)
@@ -194,7 +195,7 @@ Base 转换是 URL 缩短器常用的另一种方法。 Base 转换有助于在�
 
 - 假设输入的longURL是：https://en.wikipedia.org/wiki/Systems_design
 - 唯一ID生成器返回ID：2009215674938
-- 使用62进制转换将ID转换为shortURL。ID（2009215674938）被转换为 "zn9edcu"。
+- 使用62进制（base62）转换将ID转换为shortURL。ID（2009215674938）被转换为 "zn9edcu"。
 - 将ID、shortURL和longURL保存到数据库，如表8-4所示。
 
   ![](images/chapter8/table8-4.jpg)

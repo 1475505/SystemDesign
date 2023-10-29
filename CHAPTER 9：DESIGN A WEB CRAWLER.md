@@ -213,6 +213,12 @@ BFS 通常被网络爬虫使用，并通过先进先出 (FIFO) 队列实现。�
 2. 标准的BFS没有考虑到一个URL的优先级。网络很大，不是每个页面都有相同的质量和重要性。因此，我们可能希望根据页面排名、网络流量、更新频率等来确定URL的优先级。
 ### URL Frontier
 
+
+
+> "Frontier" 这个词在英文中常常用来描述一个未开发的领域或边界。在爬虫的上下文中，URL Frontier代表了互联网的“未探索的边界”，即那些还未被爬虫访问过的URLs。这个名字恰当地描绘了其在网络爬虫中的角色：一个集中存储、管理和调度待爬取URLs的地方。
+
+
+
 URL Frontier 有助于解决这些问题。 URL Frontier 是一种存储要下载的 URL 的数据结构。 URL Frontier 是确保礼貌、URL 优先级和新鲜度的重要组成部分。参考资料 [5] [9] 中提到了一些关于 URL Frontier 的值得注意的论文。这些论文的研究结果如下：
 
 - 礼貌性
@@ -368,3 +374,42 @@ Disallow: /gp/aw/cr/
   - [12] Google Dynamic Rendering:  [https://developers.google.com/search/docs/guides/dynamic-rendering](https://developers.google.com/search/docs/guides/dynamic-rendering)
   - [13] T. Urvoy, T. Lavergne, and P. Filoche, “Tracking web spam with hidden style similarity,” in Proceedings of the 2nd International Workshop on Adversarial Information Retrieval on the Web, 2006.
   - [14] H.-T. Lee, D. Leonard, X. Wang, and D. Loguinov, “IRLbot: Scaling to 6 billion pages and beyond,” in Proceedings of the 17th International World Wide Web Conference, 2008.
+
+---
+
+假设爬虫爬取了两个网页，这两个网页中有99%的内容是相似的，现代的爬虫实现是怎么对其进行去重的？
+
+
+
+现代的爬虫通常使用多种策略和技术来去重，确保不重复爬取内容。对于两个内容相似度高的网页，以下是一些常用的去重策略和技术：
+
+1. **使用哈希函数**:
+   - 为每个已爬取的页面内容生成一个哈希值，并将这些哈希值存储在一个数据结构中，如哈希表或布隆过滤器。
+   - 当爬取新页面时，为其内容生成哈希值并检查此值是否已存在。
+   - 这种方法适用于完全相同的页面内容，但对于大部分内容相似的页面可能不太有效。
+
+2. **局部敏感哈希 (LSH, Locality-Sensitive Hashing)**:
+   - LSH 是一种将高维数据映射到低维空间的方法，使得相似的数据项在低维空间中仍然接近。
+   - 对于相似但不完全相同的页面，LSH 可以将其映射到相同或相近的“桶”中。
+   - 通过比较不同页面的 LSH 值，可以检测出相似的页面。
+
+3. **SimHash**:
+   - SimHash 是一种用于确定两个集合相似度的技术。
+   - 它为每个页面生成一个固定长度的指纹，使得内容相似的页面产生的指纹之间的距离较小。
+   - 可以通过计算两个指纹之间的汉明距离来判断页面的相似度。
+
+4. **MinHash**:
+   - MinHash 也是一种用于估计两个集合相似度的方法。
+   - 它通过对页面内容进行多次哈希来生成指纹。
+   - 相似的页面会有相似的 MinHash 值。
+
+5. **URL 规范化**:
+   - 通过对 URL 进行规范化，可以确保不会因为 URL 中的参数顺序、大小写等差异而重复爬取相同的页面。
+   - 例如，`http://example.com/?a=1&b=2` 和 `http://example.com/?b=2&a=1` 指向相同的页面，但其 URL 不同。
+
+6. **内容摘要**:
+   - 对于长网页，可以选择性地抽取其关键部分生成内容摘要。
+   - 只比较摘要，而不是整个内容，可以提高效率并检测出主要内容相似的页面。
+
+通过这些策略和技术，现代的爬虫能够有效地检测和去除重复或高度相似的网页内容，从而提高抓取的效率和质量。
+
